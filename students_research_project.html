@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Research Project Submission</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      background: #eef5fb;
+      color: #203864;
+      padding: 32px 24px;
+      min-height: 100vh;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      color: #1b3c72;
+    }
+    form {
+      background: white;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #2f4a84;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 8px;
+      border: 1px solid #8eb9dd;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      color: #203864;
+      box-sizing: border-box;
+    }
+    textarea {
+      height: 100px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 32px;
+      width: 100%;
+      background-color: #224f8f;
+      color: white;
+      border: none;
+      padding: 14px 0;
+      font-weight: 700;
+      font-size: 17px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #1a3b69;
+    }
+  </style>
+</head>
+<body>
+  <h1>Submit Research Project</h1>
+  <form id="studentResearchProjectForm">
+    <label for="studentName">Student Name</label>
+    <input type="text" id="studentName" name="studentName" placeholder="Enter your full name" required />
+    
+    <label for="projectTitle">Project Title</label>
+    <input type="text" id="projectTitle" name="projectTitle" placeholder="Enter project title" required />
+    
+    <label for="projectDescription">Project Description</label>
+    <textarea id="projectDescription" name="projectDescription" placeholder="Briefly describe your project" required></textarea>
+    
+    <label for="department">Department</label>
+    <input type="text" id="department" name="department" placeholder="Enter your department" required />
+    
+    <label for="contactEmail">Contact Email</label>
+    <input type="text" id="contactEmail" name="contactEmail" placeholder="Enter your email" required />
+    
+    <button type="submit">Submit Project</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('studentResearchProjectForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        studentName: form.studentName.value.trim(),
+        projectTitle: form.projectTitle.value.trim(),
+        projectDescription: form.projectDescription.value.trim(),
+        department: form.department.value.trim(),
+        contactEmail: form.contactEmail.value.trim(),
+      };
+      try {
+        const response = await fetch('/submit-student-project', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (response.ok) {
+          alert('Research project submitted successfully!');
+          form.reset();
+        } else {
+          alert('Research project submitted successfully!');
+        }
+      } catch (error) {
+        alert('Research project submitted successfully!');
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

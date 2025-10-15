@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amethyst Hostel Feedback</title>
+  <style>
+    body { margin:0; font-family:"Segoe UI", Tahoma, Geneva, Verdana,sans-serif; background-color:#f0f4fa; display:flex; flex-direction:column; min-height:100vh; justify-content:center; align-items:center; }
+    header { background-color:#0a66c2; color:white; width:100%; padding:20px 0; text-align:center; font-size:28px; font-weight:bold; margin-bottom:40px; }
+    .feedback-card { background:white; padding:40px 30px; border-radius:15px; box-shadow:0 6px 14px rgba(0,0,0,0.1); text-align:center; width:300px; }
+    .feedback-card h2 { color:#0a66c2; margin-bottom:25px; }
+    .feedback-card input { width:100%; padding:12px 10px; margin-bottom:20px; border-radius:8px; border:1px solid #ccc; font-size:16px; outline:none; }
+    .feedback-card input:focus { border-color:#0a66c2; box-shadow:0 0 8px rgba(10,102,194,0.2); }
+    .feedback-card button { background-color:#0a66c2; color:white; border:none; padding:12px 20px; border-radius:30px; font-size:16px; cursor:pointer; margin:10px 0; width:100%; transition: background-color 0.3s; }
+    .feedback-card button:hover { background-color:#004182; }
+    .dashboard-btn { background-color:#777; }
+    .dashboard-btn:hover { background-color:#555; }
+  </style>
+</head>
+<body>
+
+  <header>Amethyst Hostel Feedback</header>
+
+  <div class="feedback-card">
+    <h2>Amethyst Hostel</h2>
+
+    <form id="feedbackForm">
+      <input type="text" name="complaint" placeholder="Enter your complaint here..." required />
+      <button type="submit">Submit</button>
+    </form>
+
+    <button class="dashboard-btn" onclick="goBack()">Back to Dashboard</button>
+  </div>
+
+  <script>
+    const form = document.getElementById('feedbackForm');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      alert("Your complaint has been submitted successfully!");
+      form.reset();
+    });
+
+    function goBack() {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+
+</body>
+</html>

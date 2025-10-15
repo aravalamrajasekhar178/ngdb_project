@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sponsor an Event (Alumni)</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f4f9ff;
+      color: #222;
+      padding: 24px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      color: #a23a04;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    form {
+      background: white;
+      padding: 30px 28px 22px 28px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: 600;
+      color: #575757;
+    }
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 9px 10px;
+      margin-top: 6px;
+      border-radius: 5px;
+      border: 1px solid #bbb;
+      font-size: 14px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 22px;
+      background-color: #a23a04;
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 17px;
+      transition: background 0.3s;
+      display: block;
+      width: 100%;
+    }
+    button:hover {
+      background: #852e02;
+    }
+  </style>
+</head>
+<body>
+<h1>Sponsor an Event</h1>
+<form id="sponsorEventForm">
+  <label for="event">Event Name</label>
+  <input type="text" id="event" name="event" required />
+  <label for="alumniName">Your Name</label>
+  <input type="text" id="alumniName" name="alumniName" required />
+  <label for="amount">Amount (₹)</label>
+  <input type="text" id="amount" name="amount" required />
+  <label for="message">Message or Details</label>
+  <textarea id="message" name="message" required></textarea>
+  <label for="contact">Contact Email or Phone</label>
+  <input type="text" id="contact" name="contact" required />
+  <button type="submit">Submit Sponsorship Offer</button>
+</form>
+<script>
+  document.getElementById('sponsorEventForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = {
+      event: this.event.value,
+      alumniName: this.alumniName.value,
+      amount: this.amount.value,
+      message: this.message.value,
+      contact: this.contact.value
+    };
+    try {
+      const response = await fetch('/post-sponsorship', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        alert('Thank you for your sponsorship offer!');
+        this.reset();
+      } else {
+        alert('Thank you for your sponsorship offer!');
+      }
+    } catch (err) {
+      alert('Thank you for your sponsorship offer!');
+      console.error(err);
+    }
+  });
+</script>
+</body>
+</html>

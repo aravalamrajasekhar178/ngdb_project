@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College Doctor Consultation</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff0f6;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 25px 20px;
+      color: #871f78;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+    form {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(135,31,120,0.15);
+    }
+    label {
+      display: block;
+      margin-top: 16px;
+      font-weight: 600;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #c99dd9;
+      font-size: 15px;
+      font-family: inherit;
+      color: #871f78;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      margin-top: 24px;
+      background-color: #871f78;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 0;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #5e1353;
+    }
+
+    /* Popup styles */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      width: 80%;
+      max-width: 350px;
+    }
+    .popup-content h2 {
+      color: #871f78;
+      margin-bottom: 15px;
+    }
+    .popup-content button {
+      background-color: #871f78;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .popup-content button:hover {
+      background-color: #5e1353;
+    }
+  </style>
+</head>
+<body>
+  <h1>Online Consultation Request</h1>
+  <form id="consultationForm">
+    <label for="name">Patient Name</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="phone" required />
+
+    <label for="doctor">Select Doctor</label>
+    <select id="doctor" name="doctor" required>
+      <option value="">-- Select Doctor --</option>
+      <option value="Dr. Ravi Kumar">Dr. Ravi Kumar</option>
+      <option value="Dr. Sumanth Reddy">Dr. Sumanth Reddy</option>
+      <option value="Dr. Lakshmi Narayan">Dr. Lakshmi Narayan</option>
+    </select>
+
+    <label for="problem">Select Problem</label>
+    <select id="problem" name="problem" required>
+      <option value="">-- Select Issue --</option>
+      <option value="Fever and Cold">Fever and Cold</option>
+      <option value="Back Pain">Back Pain</option>
+      <option value="Eye Infection">Eye Infection</option>
+      <option value="Stress">Stress</option>
+    </select>
+
+    <button type="submit">Request Consultation</button>
+  </form>
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>Consultation Request Submitted!</h2>
+      <p>Please wait for a call back from the doctor.</p>
+      <button id="closePopup">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const popup = document.getElementById("popup");
+    const closePopup = document.getElementById("closePopup");
+
+    document.getElementById('consultationForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name: e.target.name.value,
+        phone: e.target.phone.value,
+        doctor: e.target.doctor.value,
+        problem: e.target.problem.value
+      };
+      try {
+        await fetch('/submit-consultation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        popup.style.display = "flex";
+        e.target.reset();
+      } catch (err) {
+        alert('Submission failed. Please try again.');
+        console.error('Error:', err);
+      }
+    });
+
+    closePopup.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+  </script>
+</body>
+</html>

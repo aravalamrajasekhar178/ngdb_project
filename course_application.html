@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Application</title>
+<style>
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f5f5;
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  color: #333;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.cards-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 0;
+  margin-bottom: 25px;
+}
+.card {
+  min-width: 150px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.card p {
+  margin: 8px 0 0 0;
+  font-weight: 600;
+}
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 0;
+  background: #871f78;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: #5e1353;
+}
+</style>
+</head>
+<body>
+<h1 style="color:blue">Course Application</h1>
+
+<!-- Scrolling cards for tutors -->
+<div class="cards-container" id="tutorCards">
+  <div class="card" data-tutor="Charan sai - C++">
+    <img src="user.jpg" alt="Charan sai">
+     <h3 ><b>Charan Sai</b></h3>
+    <h3 ><b>C++</b></h3>
+  </div>
+  <div class="card" data-tutor="Keshav Kumar - Machine Learning">
+    <img src="user.jpg" alt="Keshav Kumar">
+    <h3><b>Keshav Kumar</b></h3>
+    <h3 ><b>Machine Learning</b></h3>
+  </div>
+  <div class="card" data-tutor="Lakshmi Narayanan - Tamil Language">
+    <img src="user.jpg" alt="Lakshmi Narayanan">
+     <h3>Lakshmi Narayanan</h3>
+    <h3 ><b>Tamil Language</b></h3>
+  </div>
+  <div class="card" data-tutor="Sreekanth - Data Analytics">
+    <img src="user.jpg" alt="Sreekanth">
+    <h3><b>Sreekanth</b></h3>
+    <h3><b>Data Analytics</b></h3>
+  </div>
+    <div class="card" data-tutor="Saravanan - Photography & Multimedia">
+    <img src="user.jpg" alt="Saravanan">
+    <h3 ><b>Saravanan</b></h3>
+    <h3 ><b>Photography & Multimedia</b></h3>
+  </div>
+</div>
+
+<!-- Application form -->
+<form id="courseForm">
+  <label for="studentName">Student Name</label>
+  <input type="text" id="studentName" name="studentName" required>
+
+  <label for="rollNumber">Roll Number</label>
+  <input type="text" id="rollNumber" name="rollNumber" required>
+
+  <label for="tutorSelect">Select Tutor</label>
+  <select id="tutorSelect" name="tutorSelect" required>
+    <option value="">-- Select Tutor --</option>
+    <option value="Charan sai - C++">Charan sai</option>
+    <option value="Keshav Kumar - Machine Learning">Keshav Kumar</option>
+    <option value="Lakshmi Narayanan - Tamil Language">Lakshmi Narayanan</option>
+    <option value="Sreekanth - Data Analytics">Sreekanth</option>
+    <option value="Saravanan - Photography & Multimedia">Saravanan</option>
+  </select>
+
+  <label for="preferredTime">Preferred Time</label>
+  <input type="text" id="preferredTime" name="preferredTime" placeholder="e.g., Mon 4-5PM" required>
+
+  <button type="submit">Apply for Course</button>
+</form>
+
+<script>
+// Populate select options from cards dynamically
+const cards = document.querySelectorAll('.card');
+const tutorSelect = document.getElementById('tutorSelect');
+cards.forEach(card => {
+  const tutor = card.dataset.tutor;
+  // Avoid duplicate options
+  if (![...tutorSelect.options].some(opt => opt.value === tutor)) {
+    const option = document.createElement('option');
+    option.value = tutor;
+    option.textContent = tutor.split(' - ')[0]; // show only name in text
+    tutorSelect.appendChild(option);
+  }
+});
+
+// Submit form
+document.getElementById('courseForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = {
+    studentName: e.target.studentName.value,
+    rollNumber: e.target.rollNumber.value,
+    tutor: e.target.tutorSelect.value,
+    preferredTime: e.target.preferredTime.value
+  };
+  try {
+    await fetch('/submit-course', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    alert('Course application submitted successfully!');
+    e.target.reset();
+  } catch(err) {
+    alert('Submission failed, please try again.');
+    console.error(err);
+  }
+});
+</script>
+
+</body>
+</html>

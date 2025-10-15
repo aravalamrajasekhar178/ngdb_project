@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Auto Drivers</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #f0f4fa;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0a66c2;
+      margin-bottom: 36px;
+    }
+
+    .driver-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .driver-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      width: 220px;
+      text-align: center;
+      padding: 16px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .driver-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+    }
+
+    .driver-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+
+    .driver-card h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.2rem;
+      color: #ff69b4;
+    }
+
+    .driver-card p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .driver-card button {
+      margin-top: 12px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #0a66c2;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .driver-card button:hover {
+      background-color: #084d9a;
+    }
+
+    /* Popup Box Styling */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.3s;
+    }
+
+    .popup.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 24px 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      width: 280px;
+      max-width: 90%;
+    }
+
+    .popup-content h2 {
+      color: #0a66c2;
+      margin-bottom: 12px;
+    }
+
+    .popup-content button {
+      margin-top: 14px;
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .popup-content button:hover {
+      background-color: #e65da8;
+    }
+  </style>
+</head>
+<body>
+  <h1>NIT Trichy Campus Auto Drivers</h1>
+
+  <div class="driver-container">
+    <div class="driver-card">
+      <img src="user.jpg" alt="Driver Photo">
+      <h3>Ravi Kumar</h3>
+      <p>Contact: +91 98765 43210</p>
+      <button onclick="contactDriver('Ravi Kumar', '9876543210')">Contact</button>
+    </div>
+
+    <div class="driver-card">
+      <img src="user.jpg" alt="Driver Photo">
+      <h3>Manoj Singh</h3>
+      <p>Contact: +91 91234 56789</p>
+      <button onclick="contactDriver('Manoj Singh', '9123456789')">Contact</button>
+    </div>
+
+    <div class="driver-card">
+      <img src="user.jpg" alt="Driver Photo">
+      <h3>Arun Prakash</h3>
+      <p>Contact: +91 99887 66554</p>
+      <button onclick="contactDriver('Arun Prakash', '9988766554')">Contact</button>
+    </div>
+
+    <div class="driver-card">
+      <img src="user.jpg" alt="Driver Photo">
+      <h3>Vijay Reddy</h3>
+      <p>Contact: +91 98765 11223</p>
+      <button onclick="contactDriver('Vijay Reddy', '9876511223')">Contact</button>
+    </div>
+  </div>
+
+  <!-- Popup Box -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>Driver will call you back in few minutes</h2>
+      <p id="popup-text">Ok</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    async function contactDriver(name, phone) {
+      // Show popup
+      const popup = document.getElementById('popup');
+      const popupText = document.getElementById('popup-text');
+      popupText.textContent = `Connecting to ${name}...`;
+      popup.classList.add('active');
+
+      // Send details to backend
+      try {
+        await fetch('/save-transport-contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone })
+        });
+      } catch (err) {
+        console.error('Error saving contact:', err);
+      }
+
+      // Open phone dialer
+      setTimeout(() => {
+        window.location.href = `tel:+91${phone}`;
+      }, 1000);
+    }
+
+    function closePopup() {
+      document.getElementById('popup').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

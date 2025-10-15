@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Details</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4fa;
+      margin: 0;
+      padding: 40px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #ff69b4;
+      margin-bottom: 30px;
+    }
+    .field-label {
+      font-weight: 700;
+      color: #555;
+      margin-top: 15px;
+    }
+    .field-value {
+      margin-left: 10px;
+      font-size: 16px;
+      color: #333;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 25px;
+      color: #ff69b4;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Account Details</h1>
+    <div>
+      <span class="field-label">Name:</span>
+      <span class="field-value" id="nameVal"></span>
+    </div>
+    <div>
+      <span class="field-label">Email:</span>
+      <span class="field-value" id="emailVal"></span>
+    </div>
+    <div>
+      <span class="field-label">Roll Number:</span>
+      <span class="field-value" id="rollNumberVal"></span>
+    </div>
+    <div>
+      <span class="field-label">Department:</span>
+      <span class="field-value" id="departmentVal"></span>
+    </div>
+    <div>
+      <span class="field-label">Course:</span>
+      <span class="field-value" id="courseVal"></span>
+    </div>
+    <div>
+      <span class="field-label">Branch:</span>
+      <span class="field-value" id="branchVal"></span>
+    </div>
+    <div>
+      <span class="field-label">Mobile Number:</span>
+      <span class="field-value" id="mobileVal"></span>
+    </div>
+
+    <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    function getQueryParam(param) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+    }
+
+    document.getElementById('nameVal').textContent = getQueryParam('username') || 'Not available';
+    document.getElementById('emailVal').textContent = getQueryParam('email') || 'Not available';
+    document.getElementById('rollNumberVal').textContent = getQueryParam('roll_number') || 'Not available';
+    document.getElementById('departmentVal').textContent = getQueryParam('department') || 'Not available';
+    document.getElementById('courseVal').textContent = getQueryParam('course') || 'Not available';
+    document.getElementById('branchVal').textContent = getQueryParam('branch') || 'Not available';
+    document.getElementById('mobileVal').textContent = getQueryParam('mobile') || 'Not available';
+  </script>
+
+</body>
+</html>

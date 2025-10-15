@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard</title>
+  <style>
+    /* General page style */
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4fa;
+      color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header section */
+    header {
+      background-color: #ff69b4;
+      color: white;
+      padding: 25px 40px;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Account details link on left */
+    #accountDetailsLink {
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #accountDetailsLink:hover {
+      text-decoration: underline;
+    }
+
+    /* Account icon container on right */
+    .account-container {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      text-align: center;
+      width: 60px;
+    }
+
+    .account-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ff69b4;
+      font-weight: bold;
+      font-size: 18px;
+      border: 2px solid white;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      transition: box-shadow 0.3s ease;
+      margin: 0 auto;
+    }
+
+    .account-icon:hover {
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    }
+
+    /* Dropdown menu */
+    .account-dropdown {
+      position: absolute;
+      top: 65px;
+      right: 0;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      width: 220px;
+      display: none;
+      flex-direction: column;
+      padding: 15px;
+      z-index: 1000;
+      text-align: left;
+    }
+
+    /* Show dropdown */
+    .account-dropdown.show {
+      display: flex;
+    }
+
+    .account-dropdown .logout-link {
+      margin-top: 10px;
+      padding: 8px 10px;
+      background-color: #ff69b4;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+    }
+
+    .account-dropdown .logout-link:hover {
+      background-color: #d94f8b;
+    }
+
+    /* Dashboard grid */
+    .dashboard-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 35px;
+      padding: 50px 70px;
+      justify-content: center;
+      align-content: center;
+      box-sizing: border-box;
+    }
+
+    /* Individual cards */
+    .card {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 50px 20px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Larger icons */
+    .card img {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 20px;
+    }
+
+    /* Section titles */
+    .card h3 {
+      margin: 10px 0 0 0;
+      font-size: 20px;
+      color: #0a66c2;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #ff69b4;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .dashboard-container {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        padding: 30px 20px;
+        gap: 20px;
+      }
+
+      .card img {
+        width: 90px;
+        height: 90px;
+      }
+
+      .card h3 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" id="accountDetailsLink">Account Details</a>
+
+    <div class="account-container" id="accountContainer" tabindex="0" aria-label="User Account">
+      <div class="account-icon" title="Account">👤</div>
+      <div class="account-dropdown" id="accountDropdown" role="menu" aria-hidden="true">
+        <a href="student_login_form.html" class="logout-link" id="logoutLink">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-container">
+    <a href="alumni.html" class="card">
+      <img src="alumnis.png" alt="Alumni" />
+      <h3>Alumni</h3>
+    </a>
+
+    <a href="academics.html" class="card">
+      <img src="academics.jpg" alt="Academics" />
+      <h3>Academics</h3>
+    </a>
+
+    <a href="hostels.html" class="card">
+      <img src="hostel.jpg" alt="Hostel Complaints" />
+      <h3>Hostel Complaints</h3>
+    </a>
+
+    <a href="mess_complaints.html" class="card">
+      <img src="mess.jpg" alt="Mess Complaints" />
+      <h3>Mess Complaints</h3>
+    </a>
+
+    <a href="health.html" class="card">
+      <img src="health.jpg" alt="Health" />
+      <h3>Health</h3>
+    </a>
+
+    <a href="transportation.html" class="card">
+      <img src="autorikshaw.png" alt="Transportation" />
+      <h3>Transportation</h3>
+    </a>
+
+    <a href="elearning.html" class="card">
+      <img src="e-learning.jpg" alt="E-Learning" />
+      <h3>E-Learning</h3>
+    </a>
+  </div>
+
+  <footer>© 2025 College Portal | All Rights Reserved</footer>
+
+  <script>
+    document.getElementById('accountDetailsLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      // pass all current query params as is to account_details.html
+      const params = window.location.search;
+      window.location.href = 'account_details.html' + params;
+    });
+
+    const accountContainer = document.getElementById('accountContainer');
+    const accountDropdown = document.getElementById('accountDropdown');
+
+    accountContainer.addEventListener('click', () => {
+      const visible = accountDropdown.classList.contains('show');
+      if (visible) {
+        accountDropdown.classList.remove('show');
+        accountDropdown.setAttribute('aria-hidden', 'true');
+      } else {
+        accountDropdown.classList.add('show');
+        accountDropdown.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!accountContainer.contains(e.target)) {
+        accountDropdown.classList.remove('show');
+        accountDropdown.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    accountContainer.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        accountDropdown.classList.remove('show');
+        accountDropdown.setAttribute('aria-hidden', 'true');
+        accountContainer.focus();
+      }
+    });
+  </script>
+</body>
+</html>

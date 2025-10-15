@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Staffs Dashboard</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: white;
+      color: #3a0e41;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header & Footer */
+    header, footer {
+      background-color: #ff69b4;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      font-size: 1.4rem;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      gap: 10px;
+    }
+
+    .header-left img {
+      height: 45px;
+      width: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .header-left span {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid white;
+      object-fit: cover;
+    }
+
+    .username {
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    /* Main Content */
+    h1 {
+      text-align: center;
+      margin: 40px 0 30px;
+      font-weight: bold;
+      font-size: 2rem;
+      color: #b3246f;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      flex-grow: 1;
+      padding: 20px;
+    }
+
+    .dashboard-card {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      width: 280px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+      background-color: #ffe6f0;
+    }
+
+    .dashboard-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .dashboard-card h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ff69b4;
+      margin-bottom: 8px;
+    }
+
+    .dashboard-card p {
+      font-size: 0.95rem;
+      color: #555;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <img src="nit_trichy_logo.png" alt="Institute Logo">
+      <span>National Institute of Technology, Tiruchirappalli</span>
+    </div>
+  </header>
+
+  <div class="card-container">
+    <div class="dashboard-card" onclick="location.href='student_login.html'">
+      <img src="students_img.png" alt="Student"/>
+      <h2>Student</h2>
+    </div>
+
+    <div class="dashboard-card" onclick="location.href='faculty_login.html'">
+      <img src="faculty_img.png" alt="Faculty"/>
+      <h2>Faculty</h2>
+    </div>
+
+    <div class="dashboard-card" onclick="location.href='alumni_login.html'">
+      <img src="alumnis.png" alt="Alumni"/>
+      <h2>Alumni</h2>
+    
+    </div>
+
+    <div class="dashboard-card" onclick="location.href='staff_login.html'">
+      <img src="staff_img.png" alt="Staff"/>
+      <h2>Staff</h2>
+    
+    </div>
+  </div>
+
+  <footer>
+    
+  </footer>
+</body>
+</html>

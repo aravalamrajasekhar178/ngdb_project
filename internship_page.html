@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Internship Opportunities</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f0f4fa;
+      color: #333;
+      padding: 20px 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff69b4;
+      margin-bottom: 30px;
+    }
+
+    .scrolling-wrapper-outer {
+      width: 100%;
+      overflow-x: auto;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .scrolling-wrapper-inner {
+      display: flex;
+      gap: 20px;
+    }
+
+    .internship-card {
+      min-width: 300px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      flex-shrink: 0;
+    }
+
+    .internship-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .internship-card h3 {
+      margin: 0 0 8px 0;
+      color: #0a66c2;
+      font-weight: 700;
+    }
+
+    .internship-card p {
+      font-size: 14px;
+      color: #555;
+      margin: 6px 0;
+    }
+
+    .internship-card .package {
+      font-weight: bold;
+      color: #ff69b4;
+      margin-top: 8px;
+    }
+
+    form {
+      background: white;
+      max-width: 600px;
+      margin: 30px auto 0 auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    form select,
+    form input[type="text"],
+    form textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    form textarea {
+      height: 80px;
+    }
+
+    form button {
+      margin-top: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #d94f8b;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Internship Opportunities</h1>
+
+<div class="scrolling-wrapper-outer">
+  <div class="scrolling-wrapper-inner">
+    <!-- Static internship cards -->
+    <div class="internship-card">
+      <h3>Software Engineer Intern</h3>
+      <p><strong>Company:</strong> Google</p>
+      <p><strong>Description:</strong> Work on scalable backend systems.</p>
+      <p><strong>Skills Required:</strong> Java, Python, Cloud</p>
+      <p class="package">Stipend: ₹25000/month</p>
+    </div>
+    <div class="internship-card">
+      <h3>Data Analyst Intern</h3>
+      <p><strong>Company:</strong> Microsoft</p>
+      <p><strong>Description:</strong> Analyze large datasets to derive insights.</p>
+      <p><strong>Skills Required:</strong> SQL, Excel, Power BI</p>
+      <p class="package">Stipend: ₹22000/month</p>
+    </div>
+    <div class="internship-card">
+      <h3>Cloud Developer Intern</h3>
+      <p><strong>Company:</strong> Amazon</p>
+      <p><strong>Description:</strong> Build cloud-native applications.</p>
+      <p><strong>Skills Required:</strong> AWS, Node.js, Docker</p>
+      <p class="package">Stipend: ₹23000/month</p>
+    </div>
+    <div class="internship-card">
+     
+      <h3>Frontend Developer Intern</h3>
+      <p><strong>Company:</strong> Facebook</p>
+      <p><strong>Description:</strong> Create interactive UIs for web applications.</p>
+      <p><strong>Skills Required:</strong> React, JavaScript, CSS</p>
+      <p class="package">Stipend: ₹20000/month</p>
+    </div>
+    <div class="internship-card">
+      
+      <h3>Mechanical Design Intern</h3>
+      <p><strong>Company:</strong> Tesla</p>
+      <p><strong>Description:</strong> Assist in designing automotive components.</p>
+      <p><strong>Skills Required:</strong> CAD, SolidWorks, Matlab</p>
+      <p class="package">Stipend: ₹18000/month</p>
+    </div>
+  </div>
+</div>
+
+<!-- Application form -->
+<form id="applicationForm">
+  <label for="company">Applying To (Company)</label>
+  <select id="company" name="company" required>
+    <option value="">Select company</option>
+    <option value="Google">Google</option>
+    <option value="Microsoft">Microsoft</option>
+    <option value="Amazon">Amazon</option>
+    <option value="Facebook">Facebook</option>
+    <option value="Tesla">Tesla</option>
+  </select>
+
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required />
+
+  <label for="qualification">Qualification</label>
+  <input type="text" id="qualification" name="qualification" required />
+
+  <label for="experience">Experience</label>
+  <input type="text" id="experience" name="experience" required />
+
+  <label for="skills">Skills</label>
+  <textarea id="skills" name="skills" required></textarea>
+
+  <label for="project">Project</label>
+  <textarea id="project" name="project" required></textarea>
+
+  <button type="submit">Submit Application</button>
+</form>
+
+<script>
+  const form = document.getElementById('applicationForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = {
+      applyingTo: form.company.value,
+      name: form.name.value,
+      qualification: form.qualification.value,
+      experience: form.experience.value,
+      skills: form.skills.value,
+      project: form.project.value,
+    };
+    try {
+      const response = await fetch('/submit-internship', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        alert('Your internship application has been submitted successfully!');
+        form.reset();
+      } else {
+        alert('Error submitting your application.');
+      }
+    } catch (error) {
+      alert('Error submitting. Check your network.');
+    }
+  });
+</script>
+
+</body>
+</html>

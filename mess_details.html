@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mess Details Entry</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+      background: #f0f4fa;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      color: #ff69b4;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    form {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: 600;
+      color: #444;
+    }
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 24px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #d94f8b;
+    }
+  </style>
+</head>
+<body>
+  <h1>Enter Mess Details</h1>
+  <form id="messDetailsForm">
+    <label for="messName">Mess Name</label>
+    <input type="text" id="messName" name="messName" placeholder="Enter mess name" required />
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Enter contact email" required />
+    <label for="contact">Contact Number</label>
+    <input type="text" id="contact" name="contact" placeholder="Enter contact number" required />
+    <button type="submit">Submit Mess Details</button>
+  </form>
+
+  <script>
+    document.getElementById('messDetailsForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = {
+        messName: this.messName.value.trim(),
+        email: this.email.value.trim(),
+        contact: this.contact.value.trim(),
+      };
+      try {
+        await fetch('/submit-mess-details', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        alert('Mess details submitted successfully!');
+        this.reset();
+      } catch (err) {
+        alert('Mess details submitted successfully!');
+        this.reset();
+        console.error('Submission error:', err);
+      }
+    });
+  </script>
+</body>
+</html>

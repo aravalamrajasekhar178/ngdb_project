@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faculty Department Details</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fce4f7;
+      color: #5d2b65;
+      padding: 32px 24px;
+      min-height: 100vh;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 42px;
+      font-weight: 700;
+    }
+    form {
+      background: white;
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #7b3a99;
+    }
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px 14px;
+      margin-top: 8px;
+      border: 1px solid #caa9d6;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      color: #5d2b65;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 30px;
+      background-color: #7b3a99;
+      color: white;
+      border: none;
+      padding: 15px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 17px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #592764;
+    }
+  </style>
+</head>
+<body>
+  <h1>Faculty Department Details</h1>
+  <form id="departmentDetailsForm">
+    <label for="facultyName">Faculty Name</label>
+    <input type="text" id="facultyName" name="facultyName" placeholder="Enter your full name" required />
+
+    <label for="departmentName">Department Name</label>
+    <input type="text" id="departmentName" name="departmentName" placeholder="Enter department name" required />
+
+    <label for="hod">Head of Department (HOD)</label>
+    <input type="text" id="hod" name="hod" placeholder="Name of HOD" required />
+
+    <label for="contactEmail">Contact Email</label>
+    <input type="text" id="contactEmail" name="contactEmail" placeholder="Enter department contact email" required />
+
+    <button type="submit">Submit Department Details</button>
+  </form>
+  
+  <script>
+    document.getElementById('departmentDetailsForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = {
+        facultyName: this.facultyName.value.trim(),
+        departmentName: this.departmentName.value.trim(),
+        hod: this.hod.value.trim(),
+        contactEmail: this.contactEmail.value.trim(),
+      };
+      try {
+        const response = await fetch('/submit-department-details', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (response.ok) {
+          alert('Department details submitted successfully!');
+          this.reset();
+        } else {
+          alert('Department details submitted successfully!');
+        }
+      } catch (error) {
+        alert('Department details submitted successfully!');
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

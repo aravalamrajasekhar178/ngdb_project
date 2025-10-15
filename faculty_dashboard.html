@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faculty Dashboard</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: white;
+      color: #3a0e41;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header, footer {
+      background-color: #ff69b4; /* Pink header & footer */
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    /* Header layout */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+    }
+
+    .header-left {
+      font-size: 1.4rem;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid white;
+      object-fit: cover;
+    }
+
+    .username {
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0 30px;
+      font-weight: bold;
+      font-size: 2rem;
+      color: #b3246f;
+    }
+
+    .dashboard-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      flex-grow: 1;
+      padding: 20px;
+    }
+
+    .dashboard-card {
+      background-color: white;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      width: 280px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+      background-color: #ffe6f0;
+    }
+
+    .dashboard-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .dashboard-card h2 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ff69b4;
+    }
+
+    .dashboard-card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 10px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">Faculty Dashboard</div>
+    <div class="header-right">
+      <img src="user1.png" alt="User Icon" class="user-icon">
+      <span class="username">xxxxx</span>
+    </div>
+  </header>
+
+  <h1>Faculty Services</h1>
+
+  <div class="dashboard-container">
+    <div class="dashboard-card" onclick="location.href='faculty_doctor.html'">
+      <img src="health.jpg" alt="College Doctor"/>
+      <h2>College Doctor</h2>
+      <p>Consult and manage student health records.</p>
+    </div>
+
+    <div class="dashboard-card" onclick="location.href='Transportation.html'">
+      <img src="autorikshaw.png" alt="Transportation"/>
+      <h2>Transportation</h2>
+      <p>View and organize campus transport information.</p>
+    </div>
+  </div>
+
+  <footer></footer>
+</body>
+</html>
+

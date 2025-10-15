@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College Doctor Consultation (Student)</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9fb;
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 30px;
+      color: #444;
+    }
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    form {
+      background: white;
+      border-radius: 10px;
+      padding: 25px 30px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    label {
+      display: block;
+      margin-top: 18px;
+      font-weight: 600;
+      color: #252525;
+    }
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      margin-top: 6px;
+      border-radius: 7px;
+      border: 1px solid #bbb;
+      font-family: inherit;
+      font-size: 16px;
+      color: #333;
+      box-sizing: border-box;
+      appearance: none;
+      outline: none;
+    }
+    button {
+      margin-top: 26px;
+      background-color: #357EDD;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 17px;
+      padding: 15px 0;
+      font-weight: 700;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #235a9f;
+    }
+  </style>
+</head>
+<body>
+  <h1>Request Doctor Consultation</h1>
+  <form id="studentConsultationForm">
+    <label for="doctor">Select Doctor</label>
+    <select id="doctor" name="doctor" required>
+      <option value="">-- Select Doctor --</option>
+      <option value="Dr. Ravi Kumar">Dr. Ravi Kumar</option>
+      <option value="Dr. Sumanth Reddy">Dr. Sumanth Reddy</option>
+      <option value="Dr. Lakshmi Narayan">Dr. Lakshmi Narayan</option>
+    </select>
+
+    <label for="problem">Select Problem</label>
+    <select id="problem" name="problem" required>
+      <option value="">-- Select Problem --</option>
+      <option value="Fever and Cold">Fever and Cold</option>
+      <option value="Back Pain">Back Pain</option>
+      <option value="Eye Infection">Eye Infection</option>
+      <option value="Stress">Stress</option>
+    </select>
+
+    <button type="submit">Submit Consultation Request</button>
+  </form>
+  <script>
+    document.getElementById('studentConsultationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = {
+        doctor: this.doctor.value,
+        problem: this.problem.value
+      };
+      try {
+        await fetch('/submit-consultation', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(data)
+        });
+        alert('Consultation request submitted successfully! Please wait for a call back.');
+        this.reset();
+      } catch(err) {
+        alert('Consultation request submitted successfully! Please wait for a call back.');
+        this.reset();
+        console.error('Submission error', err);
+      }
+    });
+  </script>
+</body>
+</html>

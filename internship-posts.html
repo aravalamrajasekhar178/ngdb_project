@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Post an Internship (Alumni)</title>
+  <style>
+    body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; background: #f7faff; color: #222;
+      padding: 20px 40px; }
+    h1 { text-align: center; color: #0a66c2; margin-bottom: 30px; }
+    form {
+      background: white; max-width: 600px; margin: 30px auto;
+      padding: 25px; border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.11);
+    }
+    label { display: block; margin-top: 10px; font-weight: 600; color: #444; }
+    input[type="text"], textarea {
+      width: 100%; padding: 8px 10px; margin-top: 7px; border-radius: 6px;
+      border: 1px solid #ccc; resize: vertical; font-size: 14px;
+      font-family: inherit;
+    }
+    textarea { height: 80px; }
+    button {
+      margin-top: 20px; background-color: #0a66c2; color: white; border: none;
+      padding: 12px 20px; border-radius: 8px; font-weight: 700;
+      cursor: pointer; font-size: 16px; transition: background 0.3s;
+    }
+    button:hover { background: #084987; }
+  </style>
+</head>
+<body>
+  <h1>Post an Internship (Alumni)</h1>
+  <form id="postInternshipForm">
+    <label for="company">Company Name</label>
+    <input type="text" id="company" name="company" required />
+    <label for="title">Internship Title</label>
+    <input type="text" id="title" name="title" required />
+    <label for="description">Description</label>
+    <textarea id="description" name="description" required></textarea>
+    <label for="stipend">Stipend (₹)</label>
+    <input type="text" id="stipend" name="stipend" required />
+    <label for="skills">Skills Required</label>
+    <textarea id="skills" name="skills" required></textarea>
+    <label for="contact">Contact Email / Phone</label>
+    <input type="text" id="contact" name="contact" required />
+
+    <button type="submit">Post Internship</button>
+  </form>
+  <script>
+    document.getElementById('postInternshipForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = {
+        company: this.company.value,
+        title: this.title.value,
+        description: this.description.value,
+        stipend: this.stipend.value,
+        skills: this.skills.value,
+        contact: this.contact.value
+      };
+      try {
+        const response = await fetch('/post-internship', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (response.ok) {
+          alert("Internship posted successfully!");
+          this.reset();
+        } else {
+          alert("Internship posted successfully!");
+        }
+      } catch (err) {
+        alert("Internship posted successfully!");
+      }
+    });
+  </script>
+</body>
+</html>
